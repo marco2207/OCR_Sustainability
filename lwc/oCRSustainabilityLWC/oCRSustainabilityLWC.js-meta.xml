@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>48.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__FlowScreen</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="isUpdateRecord" type="Boolean" label="Update Record?"/>
+            <property name="fieldAPIName" type="String" label="Field API Name"/>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="isUpdateRecord" type="Boolean" label="Update Record?"/>
+            <property name="fieldAPIName" type="String" label="Field API Name"/>
+            <property name="recordId" type="String" label="Record Id"/>
+            <property name="convertedText" type="String" label="Converted Text"/>
+        </targetConfig>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="isUpdateRecord" type="Boolean" label="Update Record?"/>
+            <property name="fieldAPIName" type="String" label="Field API Name"/>
+            <property name="recordId" type="String" label="Record Id"/>
+            <property name="convertedText" type="String" label="Converted Text"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
