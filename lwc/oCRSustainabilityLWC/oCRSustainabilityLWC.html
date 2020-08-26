@@ -1,0 +1,18 @@
+<template>
+    <lightning-card  icon-name='action:preview' title="MG Einstein OCR">  
+        <div class="slds-p-around_medium">
+            <div class="slds-align--absolute-center">
+                <img src={pictureSrc} class="picture"/>
+            </div>
+            <lightning-file-upload
+            label="Upload"
+            name="fileUploader"
+            accept={acceptedFormats}
+            record-id={recordId}
+            onuploadfinished={handleUploadFinished}
+            >
+        </lightning-file-upload>
+    </div>
+            <div class="slds-p-around_small slds-p-around_medium">{convertedText}</div>  
+</lightning-card>
+</template>
