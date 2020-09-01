@@ -21,34 +21,42 @@ public with sharing class Sustainability_OCR_Ctrl {
     }
     
     @AuraEnabled
-    public static String analyseImageUrl(String url) {
+    public static List <String> analyseImageUrl(String url) {
         String convertedText='';
         einsteinplay.Einstein_PredictionService service = new einsteinplay.Einstein_PredictionService(einsteinplay.Einstein_PredictionService.Types.OCR);
         einsteinplay.Einstein_PredictionResult result = service.predictOcrUrl('tabulatev2',  url, 'table', null); 
         system.debug(result);
+        String KWhValue = '';
+        String datePeriodValue = '';
+        String dateBegin = '';
+        String dateEnd = '';
+        List<String> OCRInfo = new List<String>();
     
         for(Integer i=0;i<result.probabilities.size();i++)
         {
-            if(isColRow(result.probabilities[i].attributes.cellLocation.rowIndex, result.probabilities[i].attributes.cellLocation.colIndex))
-            {
-                return result.probabilities[i].label;
-            }    
+
+            if (result.probabilities[i].attributes.cellLocation.rowIndex == 21 && result.probabilities[i].attributes.cellLocation.colIndex == 2) {
+                KWhValue = result.probabilities[i].label.substring(0,3);
+                OCRInfo.add(result.probabilities[i].label.substring(0,3));
+                
+            }
+
+            if (result.probabilities[i].attributes.cellLocation.rowIndex == 20 && result.probabilities[i].attributes.cellLocation.colIndex == 2) {
+                datePeriodValue = result.probabilities[i].label;
+                OCRInfo.add(datePeriodValue.substring(8,18));
+                OCRInfo.add(datePeriodValue.substring(24,35));
+            }
+
         }
+
+        if (KWhValue.length() > 0) {
+            //return KWhValue;
+            return OCRInfo;
+        } 
+            
+        OCRInfo.add('No recognized value, please try again or enter it manually');
+        return OCRInfo;
         
-        return 'No recognized value, please try again or enter manually';
-    }
-    
-    
-    public static Boolean isColRow(Integer rowIndex, Integer colIndex)
-    {
-        system.debug(rowIndex);
-        if (rowIndex == 21 && colIndex == 2) {
-            system.debug('### got requested value !!');
-        	return true;
-        }
-        else {
-            return false;
-        }
     }
 
 }
