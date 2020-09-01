@@ -11,11 +11,15 @@
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
             <property name="isUpdateRecord" type="Boolean" label="Update Record?"/>
-            <property name="fieldAPIName" type="String" label="Field API Name"/>
+            <property name="fieldAPIName" type="String" label="Field API Name for Energy conumption"/>
+            <property name="fieldAPINameSD" type="String" label="Field API Name for Report Start Date"/>
+            <property name="fieldAPINameED" type="String" label="Field API Name for Report End Date"/>
         </targetConfig>
         <targetConfig targets="lightning__FlowScreen">
             <property name="isUpdateRecord" type="Boolean" label="Update Record?"/>
-            <property name="fieldAPIName" type="String" label="Field API Name"/>
+            <property name="fieldAPIName" type="String" label="Field API Name for Energy conumption"/>
+            <property name="fieldAPINameSD" type="String" label="Field API Name for Report Start Date"/>
+            <property name="fieldAPINameED" type="String" label="Field API Name for Report End Date"/>
             <property name="recordId" type="String" label="Record Id"/>
             <property name="convertedText" type="String" label="Converted Text"/>
         </targetConfig>
